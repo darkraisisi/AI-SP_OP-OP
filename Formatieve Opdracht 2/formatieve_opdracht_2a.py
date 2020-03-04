@@ -28,6 +28,7 @@ def printAveragerPrice():
             pass
     print(total / database.products.count())
 def createSetCategoryProducts():
+
     setproducts = set({})
     for p in products:
         try:
