@@ -27,6 +27,14 @@ def printAveragerPrice():
         except:
             pass
     print(total / database.products.count())
+def createSetCategoryProducts():
+    setproducts = set({})
+    for p in products:
+        try:
+            setproducts.add(p["category"])
+        except:
+            pass
+    return setproducts
 
 printFristProductInfo()
 printFirstR()
