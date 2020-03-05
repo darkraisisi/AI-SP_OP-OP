@@ -10,7 +10,7 @@ database = client.huwebshop
 
 products = database.products.find()
 
-def printFristProductInfo():
+def printFirstProductInfo():
     print(f'Product: {products[0]["name"]}, Prijs: {products[0]["price"]["discount"]}')
 
 def printFirstR():
@@ -19,7 +19,7 @@ def printFirstR():
             print(product["name"])
             break
 
-def printAveragerPrice():
+def printAveragePrice():
     total = 0
     for product in products:
         try:
@@ -27,6 +27,7 @@ def printAveragerPrice():
         except:
             pass
     print(total / database.products.count())
+          
 def createSetCategoryProducts():
     setproducts = set({})
     for p in products:
@@ -36,6 +37,6 @@ def createSetCategoryProducts():
             pass
     return setproducts
 
-printFristProductInfo()
+printFirstProductInfo()
 printFirstR()
-printAveragerPrice()
+printAveragePrice()
