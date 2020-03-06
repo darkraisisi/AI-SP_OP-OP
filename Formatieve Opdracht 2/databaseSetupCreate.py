@@ -15,6 +15,8 @@ cursor.execute(
                     name VARCHAR(45) NULL ,
                     gender VARCHAR(45) NULL ,
                     category VARCHAR(45) NULL ,
+                    subcategory VARCHAR(45) NULL ,
+                    subsubcategory VARCHAR(45) NULL ,
                     brand VARCHAR(45) NULL ,
             PRIMARY KEY (id) )"""
 )
