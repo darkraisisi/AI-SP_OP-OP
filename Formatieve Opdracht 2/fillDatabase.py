@@ -8,10 +8,9 @@ connection = psycopg2.connect(user="postgres",
 cursor = connection.cursor()
 
 cursor.execute(
-            """INSERT INTO products VALUES (id,category,subcategory,subsubcategory,gender,name) ;
-            
-                FROM 'C:\\Users\\frisf\\Documents\\GitHub\\AI-SP_OP-OP\\Formatieve Opdracht 2\\products.csv' 
-                
+            """INSERT INTO products VALUES (id,category,subcategory,subsubcategory,gender,name)
+                FROM 'C:\\Users\\frisf\Documents\GitHub\AI-SP_OP-OP\Formatieve Opdracht 2\products.csv'
+                WITH DELIMITER ',' CSV HEADER
 """
 )
 
