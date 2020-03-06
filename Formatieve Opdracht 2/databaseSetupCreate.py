@@ -10,18 +10,20 @@ cursor = connection.cursor()
 cursor.execute(
             """DROP TABLE IF EXISTS products ;
 
-                CREATE TABLE products (
+                CREATE TABLE IF NOT EXISTS products (
                     id INT NOT NULL ,
                     name VARCHAR(45) NULL ,
                     gender VARCHAR(45) NULL ,
                     category VARCHAR(45) NULL ,
+                    subcategory VARCHAR(45) NULL ,
+                    subsubcategory VARCHAR(45) NULL ,
                     brand VARCHAR(45) NULL ,
             PRIMARY KEY (id) )"""
 )
 cursor.execute(
             """DROP TABLE IF EXISTS profiles ;
 
-                CREATE  TABLE IF NOT EXISTS profiles (
+                CREATE TABLE IF NOT EXISTS profiles (
                     id INT NOT NULL ,
                     order_amount INT NOT NULL DEFAULT 0 ,
             PRIMARY KEY (id) )
@@ -30,7 +32,7 @@ cursor.execute(
 cursor.execute(
             """DROP TABLE IF EXISTS sessions ;
 
-                CREATE  TABLE IF NOT EXISTS sessions (
+                CREATE TABLE IF NOT EXISTS sessions (
                     id INT NOT NULL ,
                     browser_id VARCHAR(45) NOT NULL ,
                     segment VARCHAR(45) NULL ,
@@ -46,7 +48,7 @@ cursor.execute(
 cursor.execute(
             """DROP TABLE IF EXISTS cart_has_products ;
 
-                CREATE  TABLE IF NOT EXISTS cart_has_products (
+                CREATE TABLE IF NOT EXISTS cart_has_products (
                     products_id INT NOT NULL ,
                     sessions_id INT NOT NULL ,
             PRIMARY KEY (products_id, sessions_id) ,
