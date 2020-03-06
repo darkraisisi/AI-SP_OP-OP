@@ -20,6 +20,7 @@ def transferAllProducts():
         cursor.execute(sql,(product['name'],product['price']['discount']))
         connection.commit()    
 
-transferAllProducts()
+# transferAllProducts()
+print(products[10])
 
 connection.close()
