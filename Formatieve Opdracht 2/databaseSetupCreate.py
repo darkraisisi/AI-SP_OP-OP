@@ -6,29 +6,63 @@ connection = psycopg2.connect(user="postgres",
                               port="5432",
                               database="OpisOp")
 cursor = connection.cursor()
+
 cursor.execute(
-            """ DROP TABLE IF EXISTS test1 CASCADE;
-                DROP TABLE IF EXISTS test2 CASCADE;
-            """
+            """DROP TABLE IF EXISTS products ;
+
+                CREATE TABLE products (
+                    id INT NOT NULL ,
+                    name VARCHAR(45) NULL ,
+                    gender VARCHAR(45) NULL ,
+                    category VARCHAR(45) NULL ,
+                    brand VARCHAR(45) NULL ,
+            PRIMARY KEY (id) )"""
 )
 cursor.execute(
-            """CREATE TABLE test1 (
-                test01 varchar(255),
-                test02 varchar(255),
-                test03 varchar(255),
-                test04 varchar(255),
-                test05 varchar(255)
-            );"""
+            """DROP TABLE IF EXISTS profiles ;
+
+                CREATE  TABLE IF NOT EXISTS profiles (
+                    id INT NOT NULL ,
+                    order_amount INT NOT NULL DEFAULT 0 ,
+            PRIMARY KEY (id) )
+"""
 )
 cursor.execute(
-            """CREATE TABLE test2 (
-                test01 varchar(255),
-                test02 varchar(255),
-                test03 varchar(255),
-                test04 varchar(255),
-                test05 varchar(255)
-            );"""
+            """DROP TABLE IF EXISTS sessions ;
+
+                CREATE  TABLE IF NOT EXISTS sessions (
+                    id INT NOT NULL ,
+                    browser_id VARCHAR(45) NOT NULL ,
+                    segment VARCHAR(45) NULL ,
+                    profiles_id INT NOT NULL ,
+            PRIMARY KEY (id) ,
+            CONSTRAINT fk_sessions_profiles1
+            FOREIGN KEY (profiles_id )
+            REFERENCES profiles (id )
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION)
+"""
 )
+cursor.execute(
+            """DROP TABLE IF EXISTS cart_has_products ;
+
+                CREATE  TABLE IF NOT EXISTS cart_has_products (
+                    products_id INT NOT NULL ,
+                    sessions_id INT NOT NULL ,
+            PRIMARY KEY (products_id, sessions_id) ,
+            CONSTRAINT fk_products_has_sessions_products
+            FOREIGN KEY (products_id )
+            REFERENCES products (id )
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+            CONSTRAINT fk_products_has_sessions_sessions1
+            FOREIGN KEY (sessions_id )
+            REFERENCES sessions (id )
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION)
+"""
+)
+
 
 connection.commit()
 cursor.close()
