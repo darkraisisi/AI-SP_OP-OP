@@ -29,4 +29,4 @@ print("Finished creating the product database contents.")\
 
 
 #           BRONVERMELDING
-#   Nick zijn code gebruikt uit de les
+#   Dit is de code die gebruikt is tijdens de les van 5 maart met Nick.
