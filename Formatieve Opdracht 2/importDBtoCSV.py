@@ -10,13 +10,14 @@ database = client.huwebshop
 products = database.products.find()
 
 print("Creating the product database contents...")
-with open('products.csv', 'w', newline='') as csvout:
-    fieldnames = ['id', 'category', 'subcategory', 'subsubcategory', 'gender', 'name']
+with open('products.csv', 'w', newline='', encoding='utf-8') as csvout:
+    fieldnames = ['id', 'name', 'gender', 'category', 'subcategory', 'subsubcategory',]
     writer = csv.DictWriter(csvout, fieldnames=fieldnames)
     writer.writeheader()
     c = 0
     for product in products:
         writer.writerow({'id': product["_id"],
+                         'name': product.get("name", None),
                          'gender': product.get("gender", None),
                          'category': product.get("category", None),
                          'subcategory': product.get("sub_category", None),
