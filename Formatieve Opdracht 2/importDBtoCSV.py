@@ -9,9 +9,15 @@ database = client.huwebshop
 
 products = database.products.find()
 
+"""
+-- -----------------------------------------------------
+-- Generate products.csv file
+-- -----------------------------------------------------
+"""
+
 print("Creating the product database contents...")
 with open('products.csv', 'w', newline='', encoding='utf-8') as csvout:
-    fieldnames = ['id', 'name', 'gender', 'category', 'subcategory', 'subsubcategory',]
+    fieldnames = ['id', 'name', 'gender', 'category', 'subcategory', 'subsubcategory', 'brand']
     writer = csv.DictWriter(csvout, fieldnames=fieldnames)
     writer.writeheader()
     c = 0
@@ -21,13 +27,33 @@ with open('products.csv', 'w', newline='', encoding='utf-8') as csvout:
                          'gender': product.get("gender", None),
                          'category': product.get("category", None),
                          'subcategory': product.get("sub_category", None),
-                         'subsubcategory': product.get("sub_sub_category", None)
+                         'subsubcategory': product.get("sub_sub_category", None),
+                         'brand': product.get("brand", None)
                          })
         c += 1
         if c % 10000 == 0:
             print("{} product records written...".format(c))
 print("Finished creating the product database contents.")\
 
+"""
+-- -----------------------------------------------------
+-- Generate sessions.csv file
+-- -----------------------------------------------------
+"""
+print("Creating the sessions database contents...")
+with open('sessions.csv', 'w', newline='', encoding='utf-8') as csvout:
+    fieldnames = ['id', 'segment']
+    writer = csv.DictWriter(csvout, fieldnames=fieldnames)
+    writer.writeheader()
+    c = 0
+    for session in sessions:
+        writer.writerow({'id': session["_id"],
+                         'segment': session.get("segment", None)
+                         })
+        c += 1
+        if c % 10000 == 0:
+            print("{} product records written...".format(c))
+print("Finished creating the session database contents.")\
 
 #           BRONVERMELDING
 #   Dit is de code die gebruikt is tijdens de les van 5 maart met Nick.
