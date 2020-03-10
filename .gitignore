@@ -205,3 +205,6 @@ datasets/
 .env
 .flaskenv
 utilities/imageurls.csv
+/Formatieve Opdracht 2/products.csv
+/Formatieve Opdracht 2/profiles.csv
+/Formatieve Opdracht 2/sessions.csv
