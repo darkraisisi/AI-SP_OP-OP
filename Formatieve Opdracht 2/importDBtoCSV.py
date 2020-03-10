@@ -18,6 +18,12 @@ profiles = database.profiles.find()
 -- -----------------------------------------------------
 """
 
+"""
+-- -----------------------------------------------------
+-- Generate products.csv file
+-- -----------------------------------------------------
+"""
+
 print("Creating the product database contents...")
 with open('products.csv', 'w', newline='', encoding='utf-8') as csvout:
     fieldnames = ['id', 'name', 'gender', 'category', 'subcategory', 'subsubcategory', 'brand']
@@ -78,7 +84,5 @@ with open('profiles.csv', 'w', newline='', encoding='utf-8') as csvout:
             print("{} product records written...".format(c))
 print("Finished creating the profile database contents.")
 
-
-
 #           BRONVERMELDING
-#   Nick zijn code gebruikt uit de les
+#   Dit is de code die gebruikt is tijdens de les van 5 maart met Nick.
