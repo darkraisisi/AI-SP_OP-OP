@@ -5,7 +5,7 @@ import psycopg2
 
 
 connection = psycopg2.connect(user="postgres",
-                              password="niels16",
+                              password="root",
                               host="localhost",
                               port="5432",
                               database="OpisOp")
