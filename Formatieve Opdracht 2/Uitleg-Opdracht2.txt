@@ -1,0 +1,21 @@
+Wat hebben we?
+
+•	mySQL ddl script
+•	Database ERD 
+•	Python database generate script voor postgresql
+•	Template om data de database in te pompen
+•	CSV file creater met de data uit mongoDB
+•	CSV import naar postgresql database
+
+Database design
+***info waarom we de database zo hebben gemaakt***
+
+Generate database in postgresql
+Het script is gemaakt in python. Als je het runt dan maakt die in een keer de hele database aan. Er moeten alleen parameters veranderd worden naar je persoonlijke instellingen. Het script maakt eerst verbinding met posgresql dan execute die verschillende sql statements, elk statement is een aparte tabel in de database. Op het eind wordt de connectie met postgresql gestopt.
+
+CSV generate
+Dit python script maakt van de data uit MongoDB een nette CSV file die uiteindelijk in postgresql geimporteerd kan worden. Het maakt als eerste verbinding met MongoDB en laad alles in per category als variable. Dan wordt er een CSV file aan (als er al een was met de zelfde naar overschrijft die hem)
+*** verder moet david doen***
+CSV import to Postgresql
+***Alle pseudocode hoe dat gedaan is***
+ 
