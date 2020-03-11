@@ -4,7 +4,7 @@ import random, os, json, urllib.parse, requests
 
 connection = psycopg2.connect(user="postgres",
                               password="root",
-                              host="localhost",
+                                host="localhost",
                               port="5432",
                               database="OpisOp")
 cursor = connection.cursor()

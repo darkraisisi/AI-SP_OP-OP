@@ -1,5 +1,9 @@
 import psycopg2
 
+
+""" Run this file to generate the whole database, you only need to personify the parameters of the postgresql database to acces your database """
+
+
 connection = psycopg2.connect(user="postgres",
                               password="root",
                               host="localhost",
@@ -8,56 +12,73 @@ connection = psycopg2.connect(user="postgres",
 cursor = connection.cursor()
 
 cursor.execute(
-            """DROP TABLE IF EXISTS products ;
+            """DROP TABLE IF EXISTS brand CASCADE;
+
+            CREATE  TABLE IF NOT EXISTS brand (
+            id SERIAL ,
+            name VARCHAR(255) NOT NULL ,
+            PRIMARY KEY (id) )"""
+)
+
+cursor.execute(
+            """DROP TABLE IF EXISTS products CASCADE;
 
                 CREATE TABLE IF NOT EXISTS products (
                     id INT NOT NULL ,
-                    name VARCHAR(45) NULL ,
-                    gender VARCHAR(45) NULL ,
-                    category VARCHAR(45) NULL ,
-                    subcategory VARCHAR(45) NULL ,
-                    subsubcategory VARCHAR(45) NULL ,
-                    brand VARCHAR(45) NULL ,
-            PRIMARY KEY (id) )"""
+                    name VARCHAR(255) NULL ,
+                    gender VARCHAR(255) NULL ,
+                    category VARCHAR(255) NULL ,
+                    subcategory VARCHAR(255) NULL ,
+                    subsubcategory VARCHAR(255) NULL ,
+                    brand_id INT,
+
+                    PRIMARY KEY (id),
+                    CONSTRAINT fk_products_brand1
+                    FOREIGN KEY (brand_id)
+                    REFERENCES brand (id)
+                    ON DELETE CASCADE
+                    ON UPDATE CASCADE)"""
 )
+
 cursor.execute(
-            """DROP TABLE IF EXISTS profiles ;
+            """DROP TABLE IF EXISTS profiles CASCADE;
 
                 CREATE TABLE IF NOT EXISTS profiles (
                     id INT NOT NULL ,
                     order_amount INT NOT NULL DEFAULT 0 ,
-            PRIMARY KEY (id) )
+            PRIMARY KEY (id) );
 """
 )
+
 cursor.execute(
-            """DROP TABLE IF EXISTS sessions ;
+            """DROP TABLE IF EXISTS sessions CASCADE;
 
                 CREATE TABLE IF NOT EXISTS sessions (
                     id INT NOT NULL ,
-                    browser_id VARCHAR(45) NOT NULL ,
-                    segment VARCHAR(45) NULL ,
+                    browser_id VARCHAR(255) NOT NULL ,
+                    segment VARCHAR(255) NULL ,
                     profiles_id INT NOT NULL ,
             PRIMARY KEY (id) ,
             CONSTRAINT fk_sessions_profiles1
-            FOREIGN KEY (profiles_id )
-            REFERENCES profiles (id )
+            FOREIGN KEY (profiles_id)
+            REFERENCES profiles (id)
             ON DELETE NO ACTION
-            ON UPDATE NO ACTION)
+            ON UPDATE NO ACTION);
 """
 )
+
 cursor.execute(
-            """DROP TABLE IF EXISTS cart_has_products ;
+            """DROP TABLE IF EXISTS cart_has_products CASCADE;
 
                 CREATE TABLE IF NOT EXISTS cart_has_products (
                     products_id INT NOT NULL ,
                     sessions_id INT NOT NULL ,
+                    bought BOOLEAN NOT NULL ,
             PRIMARY KEY (products_id, sessions_id) ,
-            CONSTRAINT fk_products_has_sessions_products
             FOREIGN KEY (products_id )
             REFERENCES products (id )
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
-            CONSTRAINT fk_products_has_sessions_sessions1
             FOREIGN KEY (sessions_id )
             REFERENCES sessions (id )
             ON DELETE NO ACTION
