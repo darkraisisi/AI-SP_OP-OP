@@ -27,11 +27,11 @@ cursor.execute(
 
                 CREATE TABLE IF NOT EXISTS products (
                     id VARCHAR(255) NOT NULL ,
-                    name VARCHAR(45) NULL ,
-                    gender VARCHAR(45) NULL ,
-                    category VARCHAR(45) NULL ,
-                    subcategory VARCHAR(45) NULL ,
-                    subsubcategory VARCHAR(45) NULL ,
+                    name VARCHAR(255) NULL ,
+                    gender VARCHAR(255) NULL ,
+                    category VARCHAR(255) NULL ,
+                    subcategory VARCHAR(255) NULL ,
+                    subsubcategory VARCHAR(255) NULL ,
                     brand_id INT NOT NULL ,
             PRIMARY KEY (id),
             FOREIGN KEY (brand_id )
